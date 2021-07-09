@@ -1,0 +1,10 @@
+.vscode/
+.ipynb_checkpoint/
+*.ipynb
+data_collection/logs/07-07-2021_195730.csv
+data_collection/logs/07-07-2021_195754.csv
+data_collection/logs/07-07-2021_234129.csv
+data_collection/logs/07-07-2021_234153.csv
+data_collection/logs/27-06-2021_172622.csv
+data_collection/logs/27-06-2021_172946.csv
+sketch.json
