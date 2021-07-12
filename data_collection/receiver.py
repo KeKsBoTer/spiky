@@ -2,6 +2,7 @@
 
 import asyncio
 import csv
+import platform
 import struct
 from datetime import datetime
 from os import path
@@ -10,8 +11,11 @@ import subprocess
 from bleak import BleakClient
 
 SERVICE_UUID = "00002A01-0000-1000-8000-00805f9b34fb"
-DEVICE = "24:62:AB:B3:79:F2"
-
+ADDRESS = (
+    "24:62:AB:B3:79:F2"
+    if platform.system() != "Darwin"
+    else "008FB8DC-835E-4F23-AA5B-F316D4D69876"
+)
 
 def await_disconnect(client: BleakClient):
     loop = asyncio.get_event_loop()
@@ -63,13 +67,13 @@ async def run(address):
             await CLIENT.disconnect()
         CLIENT = None
 
-
-subprocess.run(["bluetoothctl", "disconnect", "24:62:AB:B3:79:F2"])
+if platform.system() == "Linux":
+    subprocess.run(["bluetoothctl", "disconnect", "24:62:AB:B3:79:F2"])
 
 try:
     while True:
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(run(DEVICE))
+        loop.run_until_complete(run(ADDRESS))
 finally:
     if CLIENT is not None and CLIENT.is_connected:
         print("closing connection...")
