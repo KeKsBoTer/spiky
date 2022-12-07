@@ -2,6 +2,7 @@
 
 import asyncio
 import csv
+import os
 import struct
 from datetime import datetime
 from os import path
@@ -45,6 +46,7 @@ async def run(address):
             "logs", f"{datetime.now().strftime('%d-%m-%Y_%H%M%S')}.csv"
         )
 
+        os.makedirs("logs", exist_ok=True)
         with open(logfile, "w") as f:
             writer = csv.writer(f, delimiter=",")
             writer.writerow(

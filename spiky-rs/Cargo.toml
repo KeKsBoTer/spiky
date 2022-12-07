@@ -1,0 +1,22 @@
+[package]
+name = "spiky-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arduino_nano33iot = { version = "0.7.0", features = [
+    "unproven",
+    "usb",
+    "use_semihosting",
+] }
+panic-halt = "0.2.0"
+cortex-m = "0.7"
+usb-device = "0.2"
+usbd-serial = "0.1"
+microfft = "0.5.0"
+#panic-probe = { version = "0.3", features = ["print-rtt"] }
+
+#[profile.dev]
+#debug = 1 # default is `true`; not needed if not already overridden

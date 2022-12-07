@@ -43,6 +43,7 @@ void loop()
         Serial.print("Connected to central: ");
         Serial.println(central.address());
         digitalWrite(LED_BUILTIN, HIGH);
+        central.connect();
 
         while (central.connected())
         {
